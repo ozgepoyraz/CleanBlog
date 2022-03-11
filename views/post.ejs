@@ -71,6 +71,17 @@
 
   <hr>
 
+  <div class="container col-md-12 text-center">
+    <a class="btn btn-primary" href="/posts/edit/<%= post._id %>">
+      Update
+    </a>
+    <a href="/posts/del/<%= post._id %>" class="btn btn-secondary" onclick="return confirm('ARE YOU SURE?')">
+      <span>
+        Delete
+      </span>
+    </a>
+  </div>
+
   <!-- Footer -->
   <%- include ("partials/_footer") -%>
 
