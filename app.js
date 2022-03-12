@@ -6,10 +6,20 @@ const methodOverride = require('method-override')
 const postController = require('./controllers/postController')
 const pageController = require('./controllers/pageController')
 
-mongoose.connect('mongodb://localhost/cleanblog-test-db', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose
+  .connect(
+    'mongodb+srv://ozge:kocaeli@cluster0.1jar0.mongodb.net/cleanblog-db?retryWrites=true&w=majority',
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    },
+  )
+  .then(() => {
+    console.log('db connected!')
+  })
+  .catch((err) => {
+    console.log(err)
+  })
 
 const app = express()
 app.use(express.static('public'))
@@ -27,6 +37,6 @@ app.post('/posts', postController.createPost)
 app.put('/posts/:id', postController.updatePost)
 app.get('/posts/del/:id', postController.deletePost)
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log('3000 portu dinleniyor.')
 })
